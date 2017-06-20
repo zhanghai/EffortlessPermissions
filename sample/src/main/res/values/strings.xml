@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!--
+  ~ Copyright (c) 2017 Zhang Hai <Dreaming.in.Code.ZH@Gmail.com>
+  ~ All Rights Reserved.
+  -->
+
+<resources>
+
+    <string name="app_name">EffortlessPermissions Sample</string>
+
+    <string name="action_about">About</string>
+    <string name="introduction">This is a sample app with an imaginary functionality of saving some files into external storage, so the WRITE_EXTERNAL_STORAGE permission is required.\n\nClick \"SAVE FILE\" to start experimenting with runtime permissions!</string>
+    <string name="save_file">Save file</string>
+    <string name="save_file_permission_request_message">App needs permission to save files. Please click \"ALLOW\" in the upcoming system dialog.</string>
+    <string name="save_file_permission_permanently_denied_message">App needs permission to save files. Please grant the \"Storage\" permission in system settings.</string>
+    <string name="open_settings">Open settings</string>
+    <string name="save_file_permission_denied">Save failed: Insufficient permissions</string>
+    <string name="save_file_show_time">You can now save the file!</string>
+
+    <string name="about_title">About</string>
+    <string name="about_name">EffortlessPermissions</string>
+    <string name="about_version_format">Version %1$s</string>
+    <string name="about_credit">Zhang Hai 2017</string>
+    <string name="about_github"><a href="https://github.com/DreaminginCodeZH/EffortlessPermissions">View on GitHub</a></string>
+</resources>
