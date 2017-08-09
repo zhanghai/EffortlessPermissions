@@ -128,23 +128,26 @@ public class EffortlessPermissions {
     public static void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions,
                                                   @NonNull int[] grantResults,
                                                   @NonNull final Object... receivers) {
+        Object[] allReceivers = new Object[receivers.length + 1];
+        System.arraycopy(receivers, 0, allReceivers, 0, receivers.length);
+        allReceivers[allReceivers.length - 1] = new EasyPermissions.PermissionCallbacks() {
+            @Override
+            public void onPermissionsGranted(int requestCode,
+                                             List<String> grantedPermissions) {}
+            @Override
+            public void onPermissionsDenied(int requestCode,
+                                            List<String> deniedPermissions) {
+                for (Object object : receivers) {
+                    runAfterPermissionDenied(object, requestCode, deniedPermissions);
+                }
+            }
+            @Override
+            public void onRequestPermissionsResult(int requestCode,
+                                                   @NonNull String[] permissions,
+                                                   @NonNull int[] grantResults) {}
+        };
         EasyPermissions.onRequestPermissionsResult(requestCode, permissions, grantResults,
-                receivers, new EasyPermissions.PermissionCallbacks() {
-                    @Override
-                    public void onPermissionsGranted(int requestCode,
-                                                     List<String> grantedPermissions) {}
-                    @Override
-                    public void onPermissionsDenied(int requestCode,
-                                                    List<String> deniedPermissions) {
-                        for (Object object : receivers) {
-                            runAfterPermissionDenied(object, requestCode, deniedPermissions);
-                        }
-                    }
-                    @Override
-                    public void onRequestPermissionsResult(int requestCode,
-                                                           @NonNull String[] permissions,
-                                                           @NonNull int[] grantResults) {}
-                });
+                allReceivers);
     }
 
     public static boolean somePermissionPermanentlyDenied(@NonNull Activity host,
