@@ -24,7 +24,7 @@ dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     compile 'com.android.support:appcompat-v7:27.0.2'
     compile 'com.android.support:support-annotations:27.0.2'
-    compile 'pub.devrel:easypermissions:0.4.3'
+    compile 'pub.devrel:easypermissions:1.1.2'
 }
 
 apply from: '../gradle-mvn-push.gradle'
