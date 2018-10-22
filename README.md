@@ -60,13 +60,7 @@ public class MainActivity extends AppCompatActivity {
         if (EffortlessPermissions.hasPermissions(this, PERMISSIONS_SAVE_FILE)) {
             // We've got the permission.
             saveFileWithPermission();
-        } else if (EffortlessPermissions.somePermissionPermanentlyDenied(this,
-                PERMISSIONS_SAVE_FILE)) {
-            // Some permission is permanently denied so we cannot request them normally.
-            OpenAppDetailsDialogFragment.show(
-                    R.string.save_file_permission_permanently_denied_message,
-                    R.string.open_settings, this);
-        } else  {
+        } else {
             // Request the permissions.
             EffortlessPermissions.requestPermissions(this,
                     R.string.save_file_permission_request_message,
@@ -76,8 +70,15 @@ public class MainActivity extends AppCompatActivity {
 
     @AfterPermissionDenied(REQUEST_CODE_SAVE_FILE_PERMISSION)
     private void onSaveFilePermissionDenied() {
-        // User denied at least some of the required permissions, report the error.
-        Toast.makeText(this, R.string.save_file_permission_denied, Toast.LENGTH_SHORT).show();
+        if (EffortlessPermissions.somePermissionPermanentlyDenied(this, PERMISSIONS_SAVE_FILE)) {
+            // Some permission is permanently denied so we cannot request them normally.
+            OpenAppDetailsDialogFragment.show(
+                    R.string.save_file_permission_permanently_denied_message,
+                    R.string.open_settings, this);
+        } else {
+            // User denied at least some of the required permissions, report the error.
+            Toast.makeText(this, R.string.save_file_permission_denied, Toast.LENGTH_SHORT).show();
+        }
     }
 
     private void saveFileWithPermission() {

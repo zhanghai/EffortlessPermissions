@@ -7,7 +7,6 @@ package me.zhanghai.android.effortlesspermissions;
 
 import android.app.Activity;
 import android.content.Context;
-import android.os.Build;
 import android.support.annotation.NonNull;
 import android.support.annotation.StringRes;
 import android.support.v4.app.Fragment;
@@ -19,6 +18,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import pub.devrel.easypermissions.EasyPermissions;
+import pub.devrel.easypermissions.PermissionRequest;
 
 public class EffortlessPermissions {
 
@@ -34,17 +34,6 @@ public class EffortlessPermissions {
         return EasyPermissions.hasPermissions(fragment.getContext(), permissions);
     }
 
-    public static boolean hasPermissions(android.app.Fragment fragment,
-                                         @NonNull String... permissions) {
-        Context context;
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            context = fragment.getContext();
-        } else {
-            context = fragment.getActivity();
-        }
-        return EasyPermissions.hasPermissions(context, permissions);
-    }
-
     public static void requestPermissions(@NonNull Activity host, @NonNull String rationale,
                                           int requestCode, @NonNull String... permissions) {
         EasyPermissions.requestPermissions(host, rationale, requestCode, permissions);
@@ -55,34 +44,8 @@ public class EffortlessPermissions {
         EasyPermissions.requestPermissions(host, rationale, requestCode, permissions);
     }
 
-    public static void requestPermissions(@NonNull android.app.Fragment host,
-                                          @NonNull String rationale, int requestCode,
-                                          @NonNull String... permissions) {
-        EasyPermissions.requestPermissions(host, rationale, requestCode, permissions);
-    }
-
-    public static void requestPermissions(@NonNull Activity host, @NonNull String rationale,
-                                          @StringRes int positiveButton,
-                                          @StringRes int negativeButton, int requestCode,
-                                          @NonNull String... permissions) {
-        EasyPermissions.requestPermissions(host, rationale, positiveButton, negativeButton,
-                requestCode, permissions);
-    }
-
-    public static void requestPermissions(@NonNull Fragment host, @NonNull String rationale,
-                                          @StringRes int positiveButton,
-                                          @StringRes int negativeButton, int requestCode,
-                                          @NonNull String... permissions) {
-        EasyPermissions.requestPermissions(host, rationale, positiveButton, negativeButton,
-                requestCode, permissions);
-    }
-
-    public static void requestPermissions(@NonNull android.app.Fragment host,
-                                          @NonNull String rationale, @StringRes int positiveButton,
-                                          @StringRes int negativeButton, int requestCode,
-                                          @NonNull String... permissions) {
-        EasyPermissions.requestPermissions(host, rationale, positiveButton, negativeButton,
-                requestCode, permissions);
+    public static void requestPermissions(PermissionRequest permissionRequest) {
+        EasyPermissions.requestPermissions(permissionRequest);
     }
 
     public static void requestPermissions(@NonNull Activity host, @StringRes int rationale,
@@ -93,36 +56,6 @@ public class EffortlessPermissions {
     public static void requestPermissions(@NonNull Fragment host, @StringRes int rationale,
                                           int requestCode, @NonNull String... permissions) {
         requestPermissions(host, host.getString(rationale), requestCode, permissions);
-    }
-
-    public static void requestPermissions(@NonNull android.app.Fragment host,
-                                          @StringRes int rationale, int requestCode,
-                                          @NonNull String... permissions) {
-        requestPermissions(host, host.getString(rationale), requestCode, permissions);
-    }
-
-    public static void requestPermissions(@NonNull Activity host, @StringRes int rationale,
-                                          @StringRes int positiveButton,
-                                          @StringRes int negativeButton, int requestCode,
-                                          @NonNull String... permissions) {
-        requestPermissions(host, host.getString(rationale), positiveButton, negativeButton,
-                requestCode, permissions);
-    }
-
-    public static void requestPermissions(@NonNull Fragment host, @StringRes int rationale,
-                                          @StringRes int positiveButton,
-                                          @StringRes int negativeButton, int requestCode,
-                                          @NonNull String... permissions) {
-        requestPermissions(host, host.getString(rationale), positiveButton, negativeButton,
-                requestCode, permissions);
-    }
-
-    public static void requestPermissions(@NonNull android.app.Fragment host,
-                                          @StringRes int rationale, @StringRes int positiveButton,
-                                          @StringRes int negativeButton, int requestCode,
-                                          @NonNull String... permissions) {
-        requestPermissions(host, host.getString(rationale), positiveButton, negativeButton,
-                requestCode, permissions);
     }
 
     public static void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions,
@@ -160,23 +93,12 @@ public class EffortlessPermissions {
         return EasyPermissions.somePermissionPermanentlyDenied(host, permissions);
     }
 
-    public static boolean somePermissionPermanentlyDenied(@NonNull android.app.Fragment host,
-                                                          @NonNull List<String> permissions) {
-        return EasyPermissions.somePermissionPermanentlyDenied(host, permissions);
-    }
-
     public static boolean somePermissionPermanentlyDenied(@NonNull Activity host,
                                                           @NonNull String... permissions) {
         return somePermissionPermanentlyDenied(host, Arrays.asList(permissions));
     }
 
     public static boolean somePermissionPermanentlyDenied(@NonNull Fragment host,
-                                                          @NonNull String... permissions) {
-        return EasyPermissions.somePermissionPermanentlyDenied(host, Arrays.asList(
-                permissions));
-    }
-
-    public static boolean somePermissionPermanentlyDenied(@NonNull android.app.Fragment host,
                                                           @NonNull String... permissions) {
         return EasyPermissions.somePermissionPermanentlyDenied(host, Arrays.asList(
                 permissions));
@@ -192,22 +114,12 @@ public class EffortlessPermissions {
         return EasyPermissions.permissionPermanentlyDenied(host, deniedPermission);
     }
 
-    public static boolean permissionPermanentlyDenied(@NonNull android.app.Fragment host,
-                                                      @NonNull String deniedPermission) {
-        return EasyPermissions.permissionPermanentlyDenied(host, deniedPermission);
-    }
-
     public static boolean somePermissionDenied(@NonNull Activity host,
                                                @NonNull String... permissions) {
         return EasyPermissions.somePermissionDenied(host, permissions);
     }
 
     public static boolean somePermissionDenied(@NonNull Fragment host,
-                                               @NonNull String... permissions) {
-        return EasyPermissions.somePermissionDenied(host, permissions);
-    }
-
-    public static boolean somePermissionDenied(@NonNull android.app.Fragment host,
                                                @NonNull String... permissions) {
         return EasyPermissions.somePermissionDenied(host, permissions);
     }
