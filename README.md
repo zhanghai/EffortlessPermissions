@@ -8,7 +8,7 @@ An Android permission library extending Google's [EasyPermissions](https://githu
 
 <a href="https://play.google.com/store/apps/details?id=me.zhanghai.android.effortlesspermissions.sample" target="_blank"><img alt="Google Play" height="90" src="https://play.google.com/intl/en_US/badges/images/generic/en_badge_web_generic.png"/></a>
 
-[Sample APK](//github.com/DreaminginCodeZH/EffortlessPermissions/releases/download/v1.1.0/sample-release.apk)
+[Sample APK](//github.com/zhanghai/EffortlessPermissions/releases/download/v1.1.0/sample-release.apk)
 
 ## Why EffortlessPermissions?
 
